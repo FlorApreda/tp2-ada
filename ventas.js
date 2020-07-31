@@ -95,3 +95,22 @@ obtenerIdVenta();
 const agregarVenta = (id, dia, mes, anio, vendedora, sucursal, componentes) => {
 };
 agregarVenta('...datos...');
+
+
+
+// Funciones y arrays para exportar al archivo .test.js ------------------------------
+const functionsYArrays = {
+    vendedoras,
+    ventas,
+    precios,
+    sucursales,
+    precioMaquina,
+    cantidadVentasComponente,
+    ventasVendedora,
+    componenteMasVendido,
+    ventasSucursal,
+    ventaPromedio,
+    obtenerIdVenta,
+    agregarVenta
+};
+module.exports = functionsYArrays; 
