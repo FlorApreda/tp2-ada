@@ -1,3 +1,5 @@
+// Datos disponibles
+
 const vendedoras = ["Ada", "Grace", "Hedy", "Sheryl"];
 
 const ventas = [
@@ -28,3 +30,68 @@ const precios = [
 ];
 
 const sucursales = ['Centro', 'Caballito'];
+
+
+// Funcionalidades!
+
+// Método 1 ------------------------------
+const precioMaquina = componentes => {
+};
+precioMaquina(["Monitor GPRS 3000", "Motherboard ASUS 1500"]); 
+// 320 ($200 del monitor + $120 del motherboard)
+
+
+
+// Método 2 ------------------------------
+const cantidadVentasComponente = componente => {
+};
+cantidadVentasComponente("Monitor ASC 543"); // 3
+
+
+
+// Método 3 ------------------------------
+const ventasVendedora = nombre => {
+};
+ventasVendedora("Grace"); // 990
+
+
+
+// Método 4 ------------------------------
+const componenteMasVendido = _ => {
+};
+componenteMasVendido(); // Monitor GPRS 3000
+
+
+
+// Método 5 ------------------------------
+const ventasSucursal = sucursal => {
+};
+ventasSucursal("Centro"); // 4195 -- ninguno da este monto!
+
+
+
+// Método 6 ------------------------------
+const mejorVendedora = _ => {
+};
+mejorVendedora(); // Grace
+
+
+
+// Método 7 ------------------------------
+const ventaPromedio = _ => {
+};
+ventaPromedio();
+
+
+
+// Método 8 ------------------------------
+const obtenerIdVenta = _ => {
+};
+obtenerIdVenta();
+
+
+
+// Método 9 ------------------------------
+const agregarVenta = (id, dia, mes, anio, vendedora, sucursal, componentes) => {
+};
+agregarVenta('...datos...');
