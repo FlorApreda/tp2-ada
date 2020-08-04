@@ -51,6 +51,23 @@ cantidadVentasComponente("Monitor ASC 543"); // 3
 
 // Método 3 ------------------------------
 const ventasVendedora = nombre => {
+    const ventasDeVendedora = [];
+    ventas.filter(vendedora => {
+        if(vendedora[4] === nombre) {
+            ventasDeVendedora.push(vendedora);
+        };
+    });
+    const preciosDeMaquinasVendidas = [];
+    precios.forEach(precio => {
+        ventasDeVendedora.forEach(ventas => {
+            ventas[6].map(maquinasVendidas => {
+                if(precio[0] === maquinasVendidas) {
+                    preciosDeMaquinasVendidas.push(precio[1]);
+                };
+            });
+        });
+    });
+    return preciosDeMaquinasVendidas.reduce((acc, precio) => acc + precio, 0);
 };
 ventasVendedora("Grace"); // 990
 
