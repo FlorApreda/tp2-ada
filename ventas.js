@@ -69,7 +69,6 @@ const ventasVendedora = nombre => {
     });
     return preciosDeMaquinasVendidas.reduce((acc, precio) => acc + precio, 0);
 };
-ventasVendedora("Grace"); // 990
 
 
 
