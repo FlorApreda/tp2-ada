@@ -106,7 +106,7 @@ const ventaPromedio = _ => {
     });
     return Math.floor(ganancia.reduce((acc, precio) => acc + precio / ganancia.length, 0));
 };
-// Verificar. Por venta o ventas totales? Esta hecho por ventas totales.
+// Verificar - preguntar!
 
 
 
