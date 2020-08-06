@@ -82,7 +82,7 @@ componenteMasVendido(); // Monitor GPRS 3000
 // Método 5 ------------------------------
 const ventasSucursal = sucursal => {
 };
-ventasSucursal("Centro"); // 4195 -- ninguno da este monto!
+ventasSucursal("Centro"); // 4195
 
 
 
@@ -106,6 +106,7 @@ const ventaPromedio = _ => {
     });
     return Math.floor(ganancia.reduce((acc, precio) => acc + precio / ganancia.length, 0));
 };
+// Verificar. Por venta o ventas totales? Esta hecho por ventas totales.
 
 
 
@@ -123,8 +124,8 @@ agregarVenta('...datos...');
 
 
 
-// Funciones y ganancias para exportar al archivo .test.js ------------------------------
-const functionsYganancias = {
+// Funciones y arrays para exportar al archivo .test.js ------------------------------
+const functionsYArrays = {
     vendedoras,
     ventas,
     precios,
@@ -138,4 +139,4 @@ const functionsYganancias = {
     obtenerIdVenta,
     agregarVenta
 };
-module.exports = functionsYganancias; 
+module.exports = functionsYArrays; 
