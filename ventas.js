@@ -95,8 +95,17 @@ mejorVendedora(); // Grace
 
 // Método 7 ------------------------------
 const ventaPromedio = _ => {
+    const ganancia = [];
+    ventas.forEach(venta => {
+        venta[6].map(maquinasVendidas => {
+            precios.filter(maquinaYPrecio => {
+                if(maquinasVendidas === maquinaYPrecio[0])
+                ganancia.push(maquinaYPrecio[1])                 
+            });
+        });
+    });
+    return Math.floor(ganancia.reduce((acc, precio) => acc + precio / ganancia.length, 0));
 };
-ventaPromedio();
 
 
 
@@ -114,8 +123,8 @@ agregarVenta('...datos...');
 
 
 
-// Funciones y arrays para exportar al archivo .test.js ------------------------------
-const functionsYArrays = {
+// Funciones y ganancias para exportar al archivo .test.js ------------------------------
+const functionsYganancias = {
     vendedoras,
     ventas,
     precios,
@@ -129,4 +138,4 @@ const functionsYArrays = {
     obtenerIdVenta,
     agregarVenta
 };
-module.exports = functionsYArrays; 
+module.exports = functionsYganancias; 
