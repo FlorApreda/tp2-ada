@@ -1,0 +1,19 @@
+{
+	"name": "tp2-ada",
+	"version": "1.0.0",
+	"description": "2do trabajo práctico ADA 2020 (Javascript/Testing/Array) Realizado por:",
+	"main": "ventas.js",
+	"scripts": {
+		"test": "jest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/mariagaa993/tp2-ada.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/mariagaa993/tp2-ada/issues"
+	},
+	"homepage": "https://github.com/mariagaa993/tp2-ada#readme"
+}
