@@ -33,6 +33,18 @@ const sucursales = ['Centro', 'Caballito'];
 
 
 // Funcionalidades!
+//--------------- VALIDACIONES -------------------//
+const validarVendedora = vendedora =>{
+    if(vendedoras.findIndex(nombre => nombre===vendedora) == -1) throw new Error("La vendedora no existe");
+}
+
+const validarSucursal = sucursal =>{
+    if((sucursales.findIndex(sucur => sucur == sucursal))=== -1) throw new Error ('Sucursal invalida');
+}
+
+const validarComponente = componente =>{
+    if(precios.findIndex(elem => elem[0]===componente) == -1) throw new Error("El componente no existe");
+}
 
 // Método 1 ------------------------------
 const precioMaquina = componentes => {
@@ -44,13 +56,21 @@ precioMaquina(["Monitor GPRS 3000", "Motherboard ASUS 1500"]);
 
 // Método 2 ------------------------------
 const cantidadVentasComponente = componente => {
+    validarComponente(componente);
+    const ventasComponente = [];
+    ventas.forEach(venta =>{
+        const index = venta[6].findIndex(comp => {
+            if(comp === componente) ventasComponente.push(1)
+        });
+    });
+    return ventasComponente.reduce((acc,contador)=> acc + contador, 0);
 };
+
 cantidadVentasComponente("Monitor ASC 543"); // 3
-
-
 
 // Método 3 ------------------------------
 const ventasVendedora = nombre => {
+    validarVendedora(nombre);
     const ventasDeVendedora = [];
     ventas.filter(vendedora => {
         if(vendedora[4] === nombre) {
@@ -81,10 +101,32 @@ componenteMasVendido(); // Monitor GPRS 3000
 
 // Método 5 ------------------------------
 const ventasSucursal = sucursal => {
+    validarSucursal(sucursal);
+    let ventasSucursal = [];
+    ventas.forEach(venta => {
+        if(venta[5] === sucursal){
+           venta[6].forEach(componente =>{
+               ventasSucursal.push(componente);
+           });
+        };
+    });
+    let preciosSucursal = [];
+    precios.forEach(componente =>{
+        ventasSucursal.forEach(elem => {
+            if(elem === componente[0]){
+                preciosSucursal.push(componente);
+            }
+        })
+        //if(componente[0]===ventasSucursal)
+    })
+    return preciosSucursal.reduce((acc, precio)=> acc + precio[1], 0);
+    console.log(preciosSucursal);
+    console.log(ventasSucursal);
 };
 ventasSucursal("Centro"); // 4195
 
-
+//retorna un numero
+//retorna el monto total en pesos vendidos de la sucursal
 
 // Método 6 ------------------------------
 const mejorVendedora = _ => {
@@ -111,16 +153,21 @@ const ventaPromedio = _ => {
 
 
 // Método 8 ------------------------------
+//`Tiene que retornar un número aleatorio entre 100000000 y 999999999`
+
 const obtenerIdVenta = _ => {
+    return Math.floor(100000000 + Math.random()*999999999)
 };
-obtenerIdVenta();
-
-
+//console.log(obtenerIdVenta())
 
 // Método 9 ------------------------------
 const agregarVenta = (id, dia, mes, anio, vendedora, sucursal, componentes) => {
+    validarVendedora(vendedora);
+    ventasSucursal(sucursal);
+    let nuevaVenta = [id, dia, mes, anio, vendedora, sucursal, componentes];
+    ventas.push(nuevaVenta);
 };
-agregarVenta('...datos...');
+//agregarVenta(obtenerIdVenta(),15,08,2020,'Ada','Centro',["Monitor GPRS 3000", "Motherboard ASUS 1500"]);
 
 
 
@@ -137,6 +184,9 @@ const functionsYArrays = {
     ventasSucursal,
     ventaPromedio,
     obtenerIdVenta,
-    agregarVenta
+    agregarVenta,
+    validarComponente,
+    validarSucursal,
+    validarVendedora
 };
 module.exports = functionsYArrays; 
