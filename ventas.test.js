@@ -26,6 +26,10 @@ test('Test 3: Ingreso el nombre de una vendedora y retorno el importe de ventas'
     expect(functionsYArrays.ventasVendedora("Grace")).toBe(990);
 });
 
+// Test del método 5 ------------------------------
+test('Test 5: Ingreso el nombre de una sucursal y retorno el importe de la misma', () => {
+    expect(functionsYArrays.ventasSucursal("Centro")).toBe(990);
+});
 
 // Test del método 7 ------------------------------
 test('Test 7: Promedio de ventas', () => {

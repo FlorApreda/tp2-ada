@@ -94,6 +94,7 @@ const ventasVendedora = nombre => {
 
 // Método 4 ------------------------------
 const componenteMasVendido = _ => {
+    
 };
 componenteMasVendido(); // Monitor GPRS 3000
 
@@ -105,7 +106,7 @@ const ventasSucursal = sucursal => {
     let ventasSucursal = [];
     ventas.forEach(venta => {
         if(venta[5] === sucursal){
-           venta[6].forEach(componente =>{
+           venta[6].map(componente =>{
                ventasSucursal.push(componente);
            });
         };
@@ -117,23 +118,15 @@ const ventasSucursal = sucursal => {
                 preciosSucursal.push(componente);
             }
         })
-        //if(componente[0]===ventasSucursal)
     })
     return preciosSucursal.reduce((acc, precio)=> acc + precio[1], 0);
-    console.log(preciosSucursal);
-    console.log(ventasSucursal);
 };
-ventasSucursal("Centro"); // 4195
-
-//retorna un numero
-//retorna el monto total en pesos vendidos de la sucursal
+ventasSucursal("Centro");
 
 // Método 6 ------------------------------
 const mejorVendedora = _ => {
 };
 mejorVendedora(); // Grace
-
-
 
 // Método 7 ------------------------------
 const ventaPromedio = _ => {
@@ -150,10 +143,8 @@ const ventaPromedio = _ => {
 };
 // Verificar - preguntar!
 
-
-
 // Método 8 ------------------------------
-//`Tiene que retornar un número aleatorio entre 100000000 y 999999999`
+//Tiene que retornar un número aleatorio entre 100000000 y 999999999`
 
 const obtenerIdVenta = _ => {
     return Math.floor(100000000 + Math.random()*999999999)
