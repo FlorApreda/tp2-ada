@@ -76,11 +76,17 @@ const sucursales = ['Centro', 'Caballito']
 // Funcionalidades!
 
 // Método 1 ------------------------------
-const precioMaquina = (componentes) => {
-	const precioVenta = componentes.reduce((acum, actual) => {
-		acum += actual[1]
-		return acum
-	}, 0)
+
+const precioMaquina = (nombresComponentes) => {
+	let precioVenta = 0
+	nombresComponentes.forEach((nombre) => {
+		precios.forEach((componente) => {
+			if (componente[0].toLowerCase() === nombre.toLowerCase()) {
+				precioVenta += componente[1]
+			}
+		})
+	})
+
 	return precioVenta
 }
 // 320 ($200 del monitor + $120 del motherboard)
