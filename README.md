@@ -4,5 +4,4 @@
 
   - Agustina Ruidiaz
   - María Alarcón
-  - Celeste Ponce
   - Florencia Apreda
