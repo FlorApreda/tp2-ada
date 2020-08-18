@@ -1,20 +1,62 @@
 // Datos disponibles
 
-const vendedoras = ["Ada", "Grace", "Hedy", "Sheryl"];
+const vendedoras = ['Ada', 'Grace', 'Hedy', 'Sheryl'];
 
 const ventas = [
-    [100000000, 4, 2, 2019, 'Grace', 'Centro', ['Monitor GPRS 3000',
-        'Motherboard ASUS 1500']],
-    [100000001, 1, 1, 2019, 'Ada', 'Centro', ['Monitor GPRS 3000',
-        'Motherboard ASUS 1500']],
-    [100000002, 2, 1, 2019, 'Grace', 'Caballito', ['Monitor ASC 543',
-        'Motherboard MZI', 'HDD Toyiva']],
-    [100000003, 10, 1, 2019, 'Ada', 'Centro', ['Monitor ASC 543',
-        'Motherboard ASUS 1200']],
-    [100000004, 12, 1, 2019, 'Grace', 'Caballito', ['Monitor GPRS 3000',
-        'Motherboard ASUS 1200']],
-    [100000005, 21, 3, 2019, 'Hedy', 'Caballito', ['Monitor ASC 543',
-        'Motherboard ASUS 1200', 'RAM Quinston']]
+	[
+		100000000,
+		4,
+		2,
+		2019,
+		'Grace',
+		'Centro',
+		['Monitor GPRS 3000', 'Motherboard ASUS 1500'],
+	],
+	[
+		100000001,
+		1,
+		1,
+		2019,
+		'Ada',
+		'Centro',
+		['Monitor GPRS 3000', 'Motherboard ASUS 1500'],
+	],
+	[
+		100000002,
+		2,
+		1,
+		2019,
+		'Grace',
+		'Caballito',
+		['Monitor ASC 543', 'Motherboard MZI', 'HDD Toyiva'],
+	],
+	[
+		100000003,
+		10,
+		1,
+		2019,
+		'Ada',
+		'Centro',
+		['Monitor ASC 543', 'Motherboard ASUS 1200'],
+	],
+	[
+		100000004,
+		12,
+		1,
+		2019,
+		'Grace',
+		'Caballito',
+		['Monitor GPRS 3000', 'Motherboard ASUS 1200'],
+	],
+	[
+		100000005,
+		21,
+		3,
+		2019,
+		'Hedy',
+		'Caballito',
+		['Monitor ASC 543', 'Motherboard ASUS 1200', 'RAM Quinston'],
+	],
 ];
 
 const precios = [
@@ -32,24 +74,27 @@ const precios = [
 const sucursales = ['Centro', 'Caballito'];
 
 
-// Funcionalidades!
-//--------------- VALIDACIONES -------------------//
-const validarVendedora = vendedora =>{
-    if(vendedoras.findIndex(nombre => nombre===vendedora) == -1) throw new Error("La vendedora no existe");
-}
+// Funcionalidades
 
-const validarSucursal = sucursal =>{
-    if((sucursales.findIndex(sucur => sucur == sucursal))=== -1) throw new Error ('Sucursal invalida');
-}
+// Validaciones ------------------------------
+const validarVendedora = vendedora => {
+    if(vendedoras.findIndex(nombre => nombre === vendedora) === -1) throw new Error('La vendedora no existe');
+};
 
-const validarComponente = componente =>{
-    if(precios.findIndex(elem => elem[0]===componente) == -1) throw new Error("El componente no existe");
-}
+const validarSucursal = sucursal => {
+    if(sucursales.findIndex(sucur => sucur == sucursal) === -1) throw new Error('Sucursal invalida');
+};
+
+const validarComponente = componente => {
+    if(precios.findIndex(arrayComponente => arrayComponente[0] === componente) === -1) throw new Error('El componente no existe');
+};
+
+
 
 // Método 1 ------------------------------
 const precioMaquina = componentes => {
 };
-precioMaquina(["Monitor GPRS 3000", "Motherboard ASUS 1500"]); 
+precioMaquina(['Monitor GPRS 3000', 'Motherboard ASUS 1500']); 
 // 320 ($200 del monitor + $120 del motherboard)
 
 
@@ -58,15 +103,15 @@ precioMaquina(["Monitor GPRS 3000", "Motherboard ASUS 1500"]);
 const cantidadVentasComponente = componente => {
     validarComponente(componente);
     const ventasComponente = [];
-    ventas.forEach(venta =>{
+    ventas.forEach(venta => {
         venta[6].findIndex(comp => {
             if(comp === componente) ventasComponente.push(1)
         });
     });
-    return ventasComponente.reduce((acc,contador)=> acc + contador, 0);
+    return ventasComponente.reduce((acc,contador) => acc + contador, 0);
 };
 
-cantidadVentasComponente("Monitor ASC 543"); // 3
+
 
 // Método 3 ------------------------------
 const ventasVendedora = nombre => {
@@ -91,10 +136,10 @@ const ventasVendedora = nombre => {
 };
 
 
-
+/*
 // Método 4 ------------------------------
 const componenteMasVendido = _ => {
-    let lista=[]; //[componente, 20]
+    let lista = []; //[componente, 20]
     ventas.forEach(venta => {
         venta[6].forEach(componente =>{         
             if((lista.findIndex(comp=> comp[0]=== componente) === -1)){
@@ -134,7 +179,7 @@ const componenteMasVendido = _ => {
     //return lista.reduce((acc,comp)=>acc+comp[1],0)
 };
 componenteMasVendido(); // 'Monitor GPRS 3000'
-
+*/
 
 
 // Método 5 ------------------------------
@@ -142,8 +187,8 @@ const ventasSucursal = sucursal => {
     validarSucursal(sucursal);
     let ventasSucursal = [];
     ventas.forEach(venta => {
-        if(venta[5] === sucursal){
-           venta[6].map(componente =>{
+        if(venta[5] === sucursal) {
+           venta[6].map(componente => {
                ventasSucursal.push(componente);
            });
         };
@@ -156,14 +201,27 @@ const ventasSucursal = sucursal => {
             }
         })
     })
-    return preciosSucursal.reduce((acc, precio)=> acc + precio[1], 0);
+    return preciosSucursal.reduce((acc, precio) => acc + precio[1], 0);
 };
-ventasSucursal("Centro");
+
+
 
 // Método 6 ------------------------------
 const mejorVendedora = _ => {
-};
-mejorVendedora(); // Grace
+    let mayorTotalDeVentas = 0;
+    let bestVendedora;
+    vendedoras.forEach((NombreVendedora, index) => {
+        if(mayorTotalDeVentas < ventasVendedora(NombreVendedora)) {
+            mayorTotalDeVentas = ventasVendedora(NombreVendedora);
+            bestVendedora = NombreVendedora;
+            index++;
+        };
+    });
+    return bestVendedora;
+}
+mejorVendedora();
+
+
 
 // Método 7 ------------------------------
 const ventaPromedio = _ => {
@@ -178,24 +236,31 @@ const ventaPromedio = _ => {
     });
     return Math.floor(ganancia.reduce((acc, precio) => acc + precio / ganancia.length, 0));
 };
-// Verificar - preguntar!
+
+
 
 // Método 8 ------------------------------
-//Tiene que retornar un número aleatorio entre 100000000 y 999999999`
-
 const obtenerIdVenta = _ => {
-    return Math.floor(100000000 + Math.random()*999999999)
+    return Math.floor(100000000 + Math.random() * 999999999);
 };
-//console.log(obtenerIdVenta())
+
+
 
 // Método 9 ------------------------------
-const agregarVenta = (id, dia, mes, anio, vendedora, sucursal, componentes) => {
+const agregarVenta = (id, dia, mes, anio, vendedora, sucursal, componente) => {
     validarVendedora(vendedora);
-    ventasSucursal(sucursal);
-    let nuevaVenta = [id, dia, mes, anio, vendedora, sucursal, componentes];
+    validarSucursal(sucursal);
+    let nuevaVenta = [
+        id, 
+        dia, 
+        mes, 
+        anio, 
+        vendedora, 
+        sucursal, 
+        componente
+    ];
     ventas.push(nuevaVenta);
 };
-//agregarVenta(obtenerIdVenta(),15,08,2020,'Ada','Centro',["Monitor GPRS 3000", "Motherboard ASUS 1500"]);
 
 
 
@@ -205,16 +270,17 @@ const functionsYArrays = {
     ventas,
     precios,
     sucursales,
+    validarComponente,
+    validarSucursal,
+    validarVendedora,
     precioMaquina,
     cantidadVentasComponente,
     ventasVendedora,
-    componenteMasVendido,
+
     ventasSucursal,
+    mejorVendedora,
     ventaPromedio,
     obtenerIdVenta,
-    agregarVenta,
-    validarComponente,
-    validarSucursal,
-    validarVendedora
+    agregarVenta
 };
 module.exports = functionsYArrays; 
