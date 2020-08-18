@@ -89,6 +89,25 @@ const validarComponente = componente => {
     if(precios.findIndex(arrayComponente => arrayComponente[0] === componente) === -1) throw new Error('El componente no existe');
 };
 
+const validarComponenteArray = componente => {
+    if(typeof componente !== 'object') throw new Error('El o los componentes deben venir en un array');
+};
+
+const validarDia = dia => {
+    if (dia < 1 || dia > 31 ) throw new Error('Número de día inválido');
+    if (typeof dia !== 'number') throw new Error('Deber ser de tipo número');
+};
+
+const validarMes = mes => {
+    if (mes < 1 || mes > 12 ) throw new Error('Número de mes inválido');
+    if (typeof mes !== 'number') throw new Error('Deber ser de tipo número');
+};
+
+const validarAnio = anio => {
+    if (anio > 2020) throw new Error('Número de anio inválido');
+    if (typeof anio !== 'number') throw new Error('Deber ser de tipo número');
+};
+
 
 
 // Método 1 ------------------------------
@@ -147,7 +166,7 @@ const ventasVendedora = nombre => {
 // Método 4 ------------------------------
 const componenteMasVendido = _ => {
     let mayorComponenteVendido = 0;
-    let mostSoldComponente = "";
+    let mostSoldComponente = '';
     precios.forEach(componente => {
         let vecesQueSeVendeElComponente = cantidadVentasComponente(componente[0]);
         if(mayorComponenteVendido < vecesQueSeVendeElComponente) {
@@ -218,15 +237,21 @@ const ventaPromedio = _ => {
 
 // Método 8 ------------------------------
 const obtenerIdVenta = _ => {
-    return Math.floor(100000000 + Math.random() * 999999999);
+    let crearId = Math.floor(100000000 + Math.random() * 999999999);
+    return crearId;
 };
 
 
 
 // Método 9 ------------------------------
-const agregarVenta = (id, dia, mes, anio, vendedora, sucursal, componente) => {
+const agregarVenta = (dia, mes, anio, vendedora, sucursal, componente) => {
+    validarComponenteArray(componente);
     validarVendedora(vendedora);
     validarSucursal(sucursal);
+    validarDia(dia);
+    validarMes(mes);
+    validarAnio(anio);
+    let id = obtenerIdVenta();
     let nuevaVenta = [
         id, 
         dia, 
@@ -240,16 +265,19 @@ const agregarVenta = (id, dia, mes, anio, vendedora, sucursal, componente) => {
 };
 
 
-
 // Funciones y arrays para exportar al archivo .test.js ------------------------------
 const functionsYArrays = {
     vendedoras,
     ventas,
     precios,
     sucursales,
-    validarComponente,
-    validarSucursal,
     validarVendedora,
+    validarSucursal,
+    validarComponente,
+    validarComponenteArray,
+    validarDia,
+    validarMes,
+    validarAnio,
     precioMaquina,
     cantidadVentasComponente,
     ventasVendedora,

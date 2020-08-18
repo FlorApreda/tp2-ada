@@ -8,8 +8,29 @@ describe('Validando los errores', () => {
     test('Sucursal: Ingreso sucursal incorrecta y tira error', () => {
         expect(() => functionsYArrays.validarSucursal('Caribe')).toThrow('Sucursal invalida');
     });
-    test('Componente: Ingreso componente incorrecto y tira error', () => {
+    test('Componente 1.1: Ingreso componente incorrecto y tira error', () => {
         expect(() => functionsYArrays.validarComponente('Tuerca')).toThrow('El componente no existe');
+    });
+    test('Componente 1.2: Si el componente no viene en un array y tira error', () => {
+        expect(() => functionsYArrays.validarComponenteArray('Tuerca')).toThrow('El o los componentes deben venir en un array');
+    });
+    test('Dia 1.1: Ingreso un día incorrecto y tira error', () => {
+        expect(() => functionsYArrays.agregarVenta(32, 8, 2020, 'Sheryl', 'Centro', ['Monitor GPRS 3000', 'Motherboard ASUS 1500'])).toThrow('Número de día inválido');
+    });
+    test('Dia 1.2: Ingreso algo distinto a un número y tira error', () => {
+        expect(() => functionsYArrays.agregarVenta('hola', 8, 2020, 'Sheryl', 'Centro', ['Monitor GPRS 3000', 'Motherboard ASUS 1500'])).toThrow('Deber ser de tipo número');
+    });
+    test('Mes 1.1: Ingreso un mes incorrecto y tira error', () => {
+        expect(() => functionsYArrays.agregarVenta(15, 13, 2020, 'Sheryl', 'Centro', ['Monitor GPRS 3000', 'Motherboard ASUS 1500'])).toThrow('Número de mes inválido');
+    });
+    test('Mes 1.2: Ingreso algo distinto a un número y tira error', () => {
+        expect(() => functionsYArrays.agregarVenta(15, 'hola', 2020, 'Sheryl', 'Centro', ['Monitor GPRS 3000', 'Motherboard ASUS 1500'])).toThrow('Deber ser de tipo número');
+    });
+    test('Anio 1.1: Ingreso un anio incorrecto y tira error', () => {
+        expect(() => functionsYArrays.agregarVenta(15, 8, 2021, 'Sheryl', 'Centro', ['Monitor GPRS 3000', 'Motherboard ASUS 1500'])).toThrow('Número de anio inválido');
+    });
+    test('Anio 1.2: Ingreso algo distinto a un número y tira error', () => {
+        expect(() => functionsYArrays.agregarVenta(15, 8, 'hola', 'Sheryl', 'Centro', ['Monitor GPRS 3000', 'Motherboard ASUS 1500'])).toThrow('Deber ser de tipo número');
     });
 });
 
@@ -47,7 +68,7 @@ test('Test 3: Ingreso el nombre de una vendedora y retorno el importe de ventas'
 
 // Test del método 4 ------------------------------
 test('Test 4: Saber cuál es el componente más vendido', () => {
-    expect(functionsYArrays.componenteMasVendido()).toBe("Monitor GPRS 3000");
+    expect(functionsYArrays.componenteMasVendido()).toBe('Monitor GPRS 3000');
 });
 
 
@@ -82,6 +103,6 @@ describe('Validando el número random', () => {
 
 // Test del metodo 9 ------------------------------
 test('Test 9: Agregando una nueva venta', () => {
-    functionsYArrays.agregarVenta(functionsYArrays.obtenerIdVenta(), 15, 8, 2020, 'Sheryl', 'Centro', ['Monitor GPRS 3000', 'Motherboard ASUS 1500']);
+    functionsYArrays.agregarVenta(15, 8, 2020, 'Sheryl', 'Centro', ['Monitor GPRS 3000', 'Motherboard ASUS 1500']);
     expect(functionsYArrays.ventas.length).toBe(7);
 });
