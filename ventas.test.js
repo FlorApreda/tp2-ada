@@ -1,4 +1,4 @@
-const functionsYArrays = require('./ventas');
+const functionsYArrays = require('./ventas')
 
 // Test de validaciones ------------------------------
 describe('Validando los errores', () => {
@@ -12,6 +12,25 @@ describe('Validando los errores', () => {
         expect(()=>functionsYArrays.validarComponente('Tuerca')).toThrow('El componente no existe');
     });
 });
+
+
+// Test del método 1 ------------------------------
+describe('Validando el método 1', () => {
+  test('Test 1.1: No ingreso ningún componente, por lo que, debería retornar 0', () => {
+	  expect(functionsYArrays.precioMaquina([])).toEqual(0)
+  });
+  test('Test 1.2: Ingreso un componente y debería retornar su precio', () => {
+	  expect(functionsYArrays.precioMaquina(['Motherboard ASUS 1200'])).toEqual(100)
+  });
+  test('Test 3: Ingreso varios componentes, y me debería retornar el valor de su suma', () => {
+	  expect(functionsYArrays.precioMaquina([
+		  'Motherboard ASUS 1200',
+			'HDD Toyiva',
+			'RAM Quinston Fury',
+			'Monitor ASC 543',
+		])).toEqual(670)
+  });
+};
 
 
 // Test del método 2 ------------------------------
@@ -50,7 +69,7 @@ describe('Validando el número random', () => {
         expect(functionsYArrays.obtenerIdVenta()).toBeGreaterThan(100000000);
     });
     test('Test 8: Creando ID para nuevas ventas', () => {
-        expect(functionsYArrays.obtenerIdVenta()).toBeLessThan(999999999);
+        expect(functionsYArrays.obtenerIdVenta()).toBeLessThanOrEqual(999999999);
     });
 });
 

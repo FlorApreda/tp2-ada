@@ -93,6 +93,15 @@ const validarComponente = componente => {
 
 // Método 1 ------------------------------
 const precioMaquina = componentes => {
+	let precioVenta = 0
+	componentes.forEach(nombre => {
+	  precios.forEach(componente => {
+			if(componente[0].toLowerCase() === nombre.toLowerCase()) {
+				precioVenta += componente[1]
+			};
+		});
+	});
+	return precioVenta
 };
 precioMaquina(['Monitor GPRS 3000', 'Motherboard ASUS 1500']); 
 // 320 ($200 del monitor + $120 del motherboard)
@@ -283,4 +292,4 @@ const functionsYArrays = {
     obtenerIdVenta,
     agregarVenta
 };
-module.exports = functionsYArrays; 
+module.exports = functionsYArrays;
