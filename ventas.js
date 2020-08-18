@@ -95,16 +95,14 @@ const validarComponente = componente => {
 const precioMaquina = componentes => {
 	let precioVenta = 0
 	componentes.forEach(nombre => {
-	  precios.forEach(componente => {
+	    precios.forEach(componente => {
 			if(componente[0].toLowerCase() === nombre.toLowerCase()) {
 				precioVenta += componente[1]
 			};
 		});
 	});
-	return precioVenta
+	return precioVenta;
 };
-precioMaquina(['Monitor GPRS 3000', 'Motherboard ASUS 1500']); 
-// 320 ($200 del monitor + $120 del motherboard)
 
 
 
@@ -117,7 +115,7 @@ const cantidadVentasComponente = componente => {
             if(comp === componente) ventasComponente.push(1)
         });
     });
-    return ventasComponente.reduce((acc,contador) => acc + contador, 0);
+    return ventasComponente.reduce((acc, contador) => acc + contador, 0);
 };
 
 
@@ -145,50 +143,21 @@ const ventasVendedora = nombre => {
 };
 
 
-/*
+
 // Método 4 ------------------------------
 const componenteMasVendido = _ => {
-    let lista = []; //[componente, 20]
-    ventas.forEach(venta => {
-        venta[6].forEach(componente =>{         
-            if((lista.findIndex(comp=> comp[0]=== componente) === -1)){
-                lista.push([componente, cantidadVentasComponente(componente)]);
-                //lista.push(cantidadVentasComponente(componente));
-            }
-        })
-    })
-    let suma = lista[0][1];
-    for(let i=0; i<lista.length; i++ ){
-        if(suma<lista[i+1][1]){
-            suma = lista[i+1][1];
-        }else if(suma>lista[i+1][1]){
-            lista[i+1][1]=suma
-        }else{
-            console.log(suma);
+    let mayorComponenteVendido = 0;
+    let mostSoldComponente = "";
+    precios.forEach(componente => {
+        let vecesQueSeVendeElComponente = cantidadVentasComponente(componente[0]);
+        if(mayorComponenteVendido < vecesQueSeVendeElComponente) {
+            mayorComponenteVendido = vecesQueSeVendeElComponente;
+            mostSoldComponente = componente[0];
         }
-    }
-    // let suma = lista[0][1];
-    // let comp=0;
-    
-    // for(let i=0; i<lista.length; i++ ){
-    //     if(suma<lista[i++][1]){
-    //         suma = lista[i++][1];
-    //         comp = lista[i++][0];
-    //     }else if(suma>lista[i++][1]){
-    //         lista[i++][1]=suma;
-    //         lista[i++][0]=comp;
-    //     }else{
-    //         console.log(suma,comp);
-    //     }
-    // }
-    //let lista2 = lista.forEach(comp => comp[1])
-    //console.log(Math.max(lista2));
-    //console.log(Math.max(lista));
-    //console.log(lista);
-    //return lista.reduce((acc,comp)=>acc+comp[1],0)
+    });
+    return mostSoldComponente;
 };
-componenteMasVendido(); // 'Monitor GPRS 3000'
-*/
+
 
 
 // Método 5 ------------------------------
@@ -203,14 +172,14 @@ const ventasSucursal = sucursal => {
         };
     });
     let preciosSucursal = [];
-    precios.forEach(componente =>{
-        ventasSucursal.forEach(elem => {
-            if(elem === componente[0]){
-                preciosSucursal.push(componente);
+    precios.forEach(componente => {
+        ventasSucursal.forEach(componentesVendidosEnSucursal => {
+            if(componentesVendidosEnSucursal === componente[0]) {
+                preciosSucursal.push(componente[1]);
             }
         })
     })
-    return preciosSucursal.reduce((acc, precio) => acc + precio[1], 0);
+    return preciosSucursal.reduce((acc, precio) => acc + precio, 0);
 };
 
 
@@ -227,8 +196,7 @@ const mejorVendedora = _ => {
         };
     });
     return bestVendedora;
-}
-mejorVendedora();
+};
 
 
 
@@ -285,7 +253,7 @@ const functionsYArrays = {
     precioMaquina,
     cantidadVentasComponente,
     ventasVendedora,
-
+    componenteMasVendido,
     ventasSucursal,
     mejorVendedora,
     ventaPromedio,
